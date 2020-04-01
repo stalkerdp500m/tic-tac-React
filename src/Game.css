@@ -1,0 +1,41 @@
+.hide {
+    display: none;
+}
+
+.container {
+    text-align: center;
+}
+
+/* body {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+} */
+
+.game-bourd {
+
+    display: flex;
+    width: 150px;
+    height: 150px;
+    border: black solid 2px;
+    margin: 15px auto;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+
+}
+
+.game-sque {
+    display: flex;
+    margin: 0;
+    width: 33.3%;
+    height: 33.3%;
+    border: solid black 1px;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-wind {
+    display: flex;
+    flex-wrap: nowrap;
+}
