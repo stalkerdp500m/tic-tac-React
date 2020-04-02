@@ -27,8 +27,27 @@ class Game extends React.Component {
 
 
   afteWiner(rezplay) {
+
+    if (rezplay.Wplayer === 'O') {
+      this.setState({ countWinO: +this.state.countWinO + 1 })
+    }
+    else {
+      this.setState({ countWinX: +this.state.countWinX + 1 })
+    }
+
     console.log(rezplay)
   };
+
+
+  resetGame() {
+    setTimeout(() => {
+      this.setState({
+        sque: Array(9).fill(null),
+        count: 0
+      });
+    }, 3000);
+
+  }
 
 
   testWin = (player) => {
@@ -40,13 +59,8 @@ class Game extends React.Component {
         this.state.sque[winLine[2]] === player) {
         //есть победилтель
         alert(`Win ${player}`);
+        this.resetGame();
 
-        setTimeout(() => {
-          this.setState({
-            sque: Array(9).fill(null),
-            count: 0
-          });
-        }, 3000);
 
         let rezPlay = { 'wLine': winLine, 'Wplayer': player };
         this.afteWiner(rezPlay);
@@ -56,12 +70,7 @@ class Game extends React.Component {
 
     if (this.state.sque.indexOf(null) === -1) {
       alert(`Ничья`);
-      setTimeout(() => {
-        this.setState({
-          sque: Array(9).fill(null),
-          count: 0
-        });
-      }, 3000);
+      this.resetGame();
     }
   };
 
