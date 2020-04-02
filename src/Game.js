@@ -7,6 +7,7 @@ class Game extends React.Component {
     super(props);
     this.state = {
       sque: Array(9).fill(null),
+      clasCell: Array(9).fill('game-sque'),
       count: 0,
       player: 'O',
       countWinO: 0,
@@ -28,14 +29,22 @@ class Game extends React.Component {
 
   afteWiner(rezplay) {
 
-    if (rezplay.Wplayer === 'O') {
+    if (rezplay.wPlayer === 'O') {
       this.setState({ countWinO: +this.state.countWinO + 1 })
     }
     else {
       this.setState({ countWinX: +this.state.countWinX + 1 })
-    }
+    };
+    let winCell = rezplay.wLine;
+    let lineWinGame = this.state.clasCell;
 
-    console.log(rezplay)
+    lineWinGame[winCell[0]] = 'win';
+    lineWinGame[winCell[1]] = 'win';
+    lineWinGame[winCell[2]] = 'win';
+
+    this.setState({ clasCell: lineWinGame });
+    this.resetGame();
+    console.log(rezplay);
   };
 
 
@@ -43,7 +52,9 @@ class Game extends React.Component {
     setTimeout(() => {
       this.setState({
         sque: Array(9).fill(null),
-        count: 0
+        count: 0,
+        clasCell: Array(9).fill('game-sque'),
+        player: 'O'
       });
     }, 3000);
 
@@ -58,11 +69,9 @@ class Game extends React.Component {
         this.state.sque[winLine[1]] === player &&
         this.state.sque[winLine[2]] === player) {
         //есть победилтель
-        alert(`Win ${player}`);
-        this.resetGame();
+        alert(`Выиграл ${player}`);
 
-
-        let rezPlay = { 'wLine': winLine, 'Wplayer': player };
+        let rezPlay = { 'wLine': winLine, 'wPlayer': player };
         this.afteWiner(rezPlay);
         return 'win';
       }
@@ -112,15 +121,15 @@ class Game extends React.Component {
         <div className="game-wind">
           <h2 className='count-win'>Счет О <br /> <hr /> {this.state.countWinO}</h2>
           <div className='game-bourd'>
-            <div className="game-sque" onClick={this.clickHandl} data='0'>{this.state.sque[0]}</div>
-            <div className="game-sque" onClick={this.clickHandl} data='1'>{this.state.sque[1]}</div>
-            <div className="game-sque" onClick={this.clickHandl} data='2'>{this.state.sque[2]}</div>
-            <div className="game-sque" onClick={this.clickHandl} data='3'>{this.state.sque[3]}</div>
-            <div className="game-sque" onClick={this.clickHandl} data='4'>{this.state.sque[4]}</div>
-            <div className="game-sque" onClick={this.clickHandl} data='5'>{this.state.sque[5]}</div>
-            <div className="game-sque" onClick={this.clickHandl} data='6'>{this.state.sque[6]}</div>
-            <div className="game-sque" onClick={this.clickHandl} data='7'>{this.state.sque[7]}</div>
-            <div className="game-sque" onClick={this.clickHandl} data='8'>{this.state.sque[8]}</div>
+            <div className={this.state.clasCell[0]} onClick={this.clickHandl} data='0'>{this.state.sque[0]}</div>
+            <div className={this.state.clasCell[1]} onClick={this.clickHandl} data='1'>{this.state.sque[1]}</div>
+            <div className={this.state.clasCell[2]} onClick={this.clickHandl} data='2'>{this.state.sque[2]}</div>
+            <div className={this.state.clasCell[3]} onClick={this.clickHandl} data='3'>{this.state.sque[3]}</div>
+            <div className={this.state.clasCell[4]} onClick={this.clickHandl} data='4'>{this.state.sque[4]}</div>
+            <div className={this.state.clasCell[5]} onClick={this.clickHandl} data='5'>{this.state.sque[5]}</div>
+            <div className={this.state.clasCell[6]} onClick={this.clickHandl} data='6'>{this.state.sque[6]}</div>
+            <div className={this.state.clasCell[7]} onClick={this.clickHandl} data='7'>{this.state.sque[7]}</div>
+            <div className={this.state.clasCell[8]} onClick={this.clickHandl} data='8'>{this.state.sque[8]}</div>
           </div>
           <h2 className='count-win'>Счет X <br /> <hr />{this.state.countWinX}</h2>
         </div>

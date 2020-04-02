@@ -40,3 +40,14 @@
     display: flex;
     flex-wrap: nowrap;
 }
+
+.win {
+    display: flex;
+    margin: 0;
+    width: 33.3%;
+    height: 33.3%;
+    border: solid rgb(23, 235, 23) 1px;
+    background-color: greenyellow;
+    justify-content: center;
+    align-items: center;
+}
